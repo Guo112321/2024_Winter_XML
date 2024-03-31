@@ -1,0 +1,5 @@
+{"cars":[
+    {"plateno" : "ABX987", "make":"Toyota", "model":"Corolla", "price":"23000"},
+    {"plateno" : "NMP432", "make":"Mazda", "model":"III", "price":"32000"},
+    {"plateno" : "PAK123", "make":"Honda", "model":"Civic", "price":"19500"}
+]}

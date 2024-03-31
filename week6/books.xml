@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet href="./books.xsl" type="text/xsl"?>
+<books>
+  <book ISBN="I0141382902">
+    <title>The Titan's Curse</title>
+    <author>
+      <firstName>Rick</firstName>
+      <middleName></middleName>
+      <lastName>Riordan</lastName>
+    </author>
+    <type>Softcover</type>
+    <publisher>Penguin Books</publisher>
+    <sellPrice>7.95</sellPrice>
+    <categories>
+      <category>children</category>
+      <category>teens</category>
+      <category>top-seller</category>
+      <category>fiction</category>
+      <category>adventure</category>
+    </categories>
+  </book>
+  <book ISBN="I0545060397">
+    <title>The Maze of Bones</title>
+    <author>
+      <firstName>Rick</firstName>
+      <middleName></middleName>
+      <lastName>Riordan</lastName>
+    </author>
+    <type>Hardcover</type>
+    <publisher>Scholastic</publisher>
+    <sellPrice>10.95</sellPrice>
+    <categories>
+      <category>children</category>
+      <category>teens</category>
+      <category>top-seller</category>
+      <category>fiction</category>
+      <category>adventure</category>
+    </categories>
+  </book>
+  <book ISBN="I0439306183">
+    <title>100 Words Kids Need to Read by 3rd Grade</title>
+    <author>
+      <firstName>Mason</firstName>
+      <middleName>K.</middleName>
+      <lastName>Scholastic</lastName>
+    </author>
+    <type>Softcover</type>
+    <publisher>Scholastic</publisher>
+    <sellPrice>5.95</sellPrice>
+    <categories>
+      <category>children</category>
+      <category>non-fiction</category>
+      <category>educational</category>
+    </categories>
+  </book>
+  <book ISBN="I9780545010221">
+    <title>Harry Potter and the Deathly Hallows (Harry Potter #7)</title>
+    <author>
+      <firstName>J.</firstName>
+      <middleName>K.</middleName>
+      <lastName>Rowling</lastName>
+    </author>
+    <type>Hardcover</type>
+    <publisher>Bloomsbury Publishing</publisher>
+    <sellPrice>12.95</sellPrice>
+    <categories>
+      <category>children</category>
+      <category>teens</category>
+      <category>adult</category>
+      <category>top-seller</category>
+      <category>fiction</category>
+      <category>adventure</category>
+    </categories>
+  </book>
+</books>

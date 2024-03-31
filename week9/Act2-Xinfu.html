@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo"></div>
+
+    <script>
+            const xhttp=new XMLHttpRequest();
+            xhttp.open("GET", "data.json", false);
+            xhttp.send();
+
+            const myBook = JSON.parse(xhttp.responseText);
+
+            let html= "";
+            for (let i = 0; i < myBook.books.length; i++) {
+                html += `<p>- ${myBook.books[i].title}, $${myBook.books[i].price}, ${myBook.books[i].author}</p><br>`;
+            }
+
+            document.getElementById("demo").innerHTML = html;
+    </script>    
+</body>
+</html>

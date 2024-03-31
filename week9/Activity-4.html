@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="info"></div>
+
+    <script>
+        const xhttp=new XMLHttpRequest();
+        xhttp.open("GET", "Activity-3.json", false);
+        xhttp.send();
+
+        const data = JSON.parse(xhttp.responseText);
+
+        let html="<table border=1>";
+        for (let i = 0; i < data.class.student.length; i++) {
+            html+=`<tr><td>${data.class.student[i].firstname}</td><td>${data.class.student[i].lastname}</td><td>${data.class.student[i].marks}</td></tr>`;
+            
+        }
+        html+=`</table>`
+        document.getElementById("info").innerHTML=html;
+    </script>
+</body>
+</html>

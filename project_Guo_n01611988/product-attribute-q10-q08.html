@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ITC5202 - Project 1 - Q8</title>
+</head>
+
+<body>
+  <label for="inputputfield">Enter Product Name:</label>
+  <form>
+    <input type="text" name="inputputfield" id="inputputfield" placeholder="Enter Search">
+    <input type="button" name="button" id="button" value="Search" onclick="clickButton()">
+  </form>
+  <h2>List of information about the Products/Suppliers</h2>
+  <table border="1">
+    <tr>
+      <th>Product ID</th>
+      <th>Supplier ID</th>
+      <th>Product Name</th>
+      <th>Brand Name</th>
+      <th>Product Description</th>
+      <th>MSRP</th>
+      <th>Sale Price</th>
+    </tr>
+    <tbody id="table"></tbody>
+  </table>
+
+  <script>
+    function clickButton() {
+      const xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "./product-attribute-q09-q07.xml", false);
+      xhttp.send();
+      const xmlDoc = xhttp.responseXML;
+      searchProducts(xmlDoc)
+    }
+
+    function searchProducts(xmlDoc) {
+      let userInput = document.getElementById('inputputfield').value.toLowerCase().trim();
+      document.getElementById('table').innerHTML = '';
+
+      let products = xmlDoc.getElementsByTagName('product');
+
+      let tableHTML = "";
+
+      for (let i = 0; i < products.length; i++) {
+        let productName = products[i].getElementsByTagName('product_name')[0].textContent.toLowerCase();
+        let productID = products[i].getAttribute('productid');
+        let supplierID = products[i].parentNode.getAttribute("supplierid"); 
+        let brandName = products[i].getElementsByTagName('brand_name')[0].textContent;
+        let productDescription = products[i].getElementsByTagName('product_description')[0].textContent;
+        let msrp = products[i].getElementsByTagName('msrp')[0].textContent;
+        let salePrice = products[i].getElementsByTagName('sale_price')[0].textContent;
+
+        if (productName.includes(userInput)) {
+          tableHTML += `<tr>
+                              <td>${productID}</td>
+                              <td>${supplierID}</td>
+                              <td>${productName}</td>
+                              <td>${brandName}</td>
+                              <td>${productDescription}</td>
+                              <td>${msrp}</td>
+                              <td>${salePrice}</td>
+                            </tr>`;
+        }
+      }
+
+      document.getElementById('table').innerHTML = tableHTML;
+
+    }
+  </script>
+</body>
+</html>

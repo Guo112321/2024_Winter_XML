@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity1</title>
+</head>
+<body>
+    <h3>Let's see what time is it</h3>
+    <button onclick="clickButton()">Show current time</button>
+
+    <script>
+        function clickButton(){
+            const nowTime = new Date() ;
+            alert(nowTime.toDateString())
+        }
+    </script>
+</body>
+</html>

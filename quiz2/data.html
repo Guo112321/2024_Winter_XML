@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="table" border="1">
+        <th>
+          <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+          </tr>
+        </th>
+        <tbody id="customerData">
+        </tbody>
+      </table>
+    
+      <script>
+        function displayData(xmlDoc) {
+            const customers = xmlDoc.getElementsByTagName("customer");
+            let customerRows = "";
+            for (let i = 0; i < customers.length; i++) {
+                const custID = customers[i].getAttribute("custID");
+                const name = customers[i].getElementsByTagName("name")[0].textContent;
+                const address = customers[i].getElementsByTagName("address")[0].textContent;
+                const phone = customers[i].getElementsByTagName("phone")[0].textContent;
+
+                customerRows += `
+                    <tr>
+                        <td>${custID}</td>
+                        <td>${name}</td>
+                        <td>${address}</td>
+                        <td>${phone}</td>
+                    </tr>
+                `;
+            }
+            const customerData = document.getElementById("customerData");
+            customerData.innerHTML = customerRows;
+          
+        };
+
+        window.addEventListener('load', () => {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "./data.xml", false);
+        console.log('loading xml file');
+        xhttp.send();
+        console.log('loaded xml file');
+        const xmlDoc = xhttp.responseXML;
+        displayData(xmlDoc);
+        });
+      </script>
+
+    <script>
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity4</title>
+</head>
+<body>
+    <form action="">
+        <Label>Select  background Color:</Label>
+        <select name="" id="selectbgcolor">
+            <option value="">please select</option>
+            <option value="red" id="red">red</option>
+            <option value="green" id="green">green</option>
+            <option value="blue" id="blue">blue</option>
+        </select>
+    </form>
+
+    <script>
+        const selectElement = document.getElementById("selectbgcolor")
+        selectElement.addEventListener("change", (event) => {
+            const selectedOption = selectElement.value
+            console.log(selectedOption)
+            document.body.style.backgroundColor = selectedOption
+
+        })
+    </script>
+</body>
+</html>

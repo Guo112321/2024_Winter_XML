@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BusinessCards>
+
+    <!-- first business card-->
+    <BusinessCard id="001">
+        <Name>DANIEL GLLEGO</Name>
+        <Title>CHIEF EXECUTIVE OFFICER</Title>
+        <ContactInfo>
+            <Email type="emailAddress">HELLO@REALLYGRETSITE.COM</Email>
+            <Phone type="mobilePhoneNumber">123-456-7890</Phone>
+            <Address>123 ANYWHERE ST., ANY CITY</Address>
+            <Website>www.REALLYGRETSITE.COM</Website>
+        </ContactInfo>
+    </BusinessCard>
+    
+
+    <!--second business card-->
+    <BusinessCard id="002">
+        <Name>APPLE</Name>
+        <Info>
+            <Email type="emailAddress">HELLO@REALLYGRETSITE.COM</Email>
+            <Phone type="mobilePhoneNumber">123-456-7890</Phone>
+            <Address>123 ANYWHERE ST., ANY CITY</Address>
+            <Website>www.REALLYGRETSITE.COM</Website>
+        </Info>
+    </BusinessCard>
+
+    <!--third business card-->
+    <BusinessCard id="003">
+        <name>CANADA GOOSE</name>
+        <Info>
+            <Email type="emailAddress">HELLO@REALLYGRETSITE.COM</Email>
+            <Phone type="mobilePhoneNumber">123-456-7890</Phone>
+            <Address>123 ANYWHERE ST., ANY CITY</Address>
+            <Website>www.REALLYGRETSITE.COM</Website>
+        </Info>
+    </BusinessCard>
+</BusinessCards>

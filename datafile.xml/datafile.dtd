@@ -1,0 +1,21 @@
+<!ELEMENT customers (customer+)>
+<!ATTLIST customers xmlns CDATA #REQUIRED>
+
+<!ELEMENT customer (name, address, phone, email?, orders)>
+<!ATTLIST customer custID CDATA #REQUIRED>
+
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name title CDATA #REQUIRED>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+
+<!ELEMENT orders (order+)>
+<!ELEMENT order (orderDate, items)>
+<!ATTLIST order orderID ID #REQUIRED>
+<!ATTLIST order orderBy CDATA #REQUIRED>
+<!ELEMENT orderDate (#PCDATA)>
+<!ELEMENT items (item)>
+<!ELEMENT item (itemPrice, itemQty)>
+<!ELEMENT itemPrice (#PCDATA)>
+<!ELEMENT itemQty (#PCDATA)>

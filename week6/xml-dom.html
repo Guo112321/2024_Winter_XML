@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books Example</title>
+</head>
+
+<body>
+  <h1>Books Example</h1>
+  <div id="data"></div>
+  <div id="demo"></div>
+
+  <script>
+    function displayData(xmlDoc) {
+      // TODO: add your code here
+      const el = document.querySelector('#data');
+      const books = xmlDoc.getElementsByTagName("book");
+      let tableHtml = '<table border="1">';
+      tableHtml += '<tr><th>Title</th><th>Sell Price</th><th>ISBN</th></tr>';
+ 
+      for (let i = 0; i < books.length; i++) {
+        const book = books[i];
+        const title = book.getElementsByTagName('title') [0].textContent;
+        const sellPrice = book.getElementsByTagName('sellPrice')[0].textContent;
+        const ISBN = book.getAttribute("ISBN");
+        tableHtml += `<tr><td>${title}</td><td>${sellPrice}</td><td>${ISBN}</td></tr>`;
+
+      }
+    tableHtml += "</table>";
+    el.innerHTML = tableHtml;
+    }
+
+    function displayFirstBook(xmlDoc){
+      const x = xmlDoc.getElementsByTagName("book")[0];
+      const xlen = x.childNodes.length;
+      let y = x.firstChild;
+      let txt = "";
+      for (let i = 0; i < xlen; i += 1) {
+        if (y.nodeType === 1) {
+          txt += i + " " + y.nodeName + "<br/>";
+          // console.log(`this is ${i} child, the nodeName is loged`);
+        }
+        y = y.nextSibling;
+      }
+      document.getElementById("demo").innerHTML = txt;
+    }
+
+    function listBookNameAndAuthor(xmlDoc){
+      const books = xmlDoc.getElementsByTagName("book");
+      for (let i = 0; i < books.length; i++) {
+        const name = books[i].getElementsByTagName("title")[0].textContent;
+        const author = books[i].getElementsByTagName("author")[0].textContent;
+        
+        console.log(`Book Name:${name}, author:${author}`)
+      }
+    }
+
+
+    window.addEventListener('load', () => {
+      const xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "./books.xml", false);
+      console.log('loading xml file');
+      xhttp.send();
+      console.log('loaded xml file');
+      const xmlDoc = xhttp.responseXML;
+      displayData(xmlDoc);
+      displayFirstBook(xmlDoc);
+      listBookNameAndAuthor(xmlDoc)
+    });
+  </script>
+</body>
+
+</html>

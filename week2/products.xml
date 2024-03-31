@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<products>
+  <product>
+    <productName>Dog Shirt Gift Basket&#8482;</productName>
+    <manufacturer>SJB Pet Boutique</manufacturer>
+    <description>Something for every day of the week</description>
+    <price currency="USD">&#36;35.99</price>
+    <price currency="CAD">&#36;44.99</price>
+    <price currency="EURO">&#8364;26.79</price>
+    <productItems>1200, 1201, 1202, 1203, 1204, 1205, 1206</productItems>
+    <message>
+      <![CDATA[
+      For further information, please visit <ourwebsite> or call us on #905-111-2222 & +1-800-111-2222
+      ]]>
+      </message>
+  </product>
+  <product>
+    <productName>Car Curiosity Basket&#8482;</productName>
+    <manufacturer>SJB Pet Boutique</manufacturer>
+    <description>Playtime morning, noon, and night</description>
+    <price currency="USD">&#36;15.99</price>
+    <price currency="CAD">&#36;18.82</price>
+    <price currency="EURO">&#8364;11.90</price>
+    <productItems>4430, 6500, 4434</productItems>
+    <message><![CDATA[ For further information, please visit <ourwebsite> or call us on #905-111-2222 & +1-800-111-2222]]></message>
+    </product>
+  <product>
+    <productName>Piggy Snuggle Basket&#8482;</productName>
+    <manufacturer>ACME</manufacturer>
+    <price currency="USD">&#36;17.50</price>
+    <price currency="CAD">&#36;21.96</price>
+    <price currency="EURO">&#8364;13.03</price>
+    <productItems>3230, 3232</productItems>
+    <message><![CDATA[ For further information, please visit <ourwebsite> or call us on #905-111-2222 & +1-800-111-2222]]></message>
+    </product>
+  <product>
+    <productName>Dog Snuggle Basket&#8482;</productName>
+    <manufacturer>ACME</manufacturer>
+    <price currency="USD">&#36;14.25</price>
+    <price currency="CAD">&#36;17.88</price>
+    <price currency="EURO">&#8364;10.61</price>
+    <productItems>3230, 3232, 3250</productItems>
+    <message><![CDATA[ For further information, please visit <ourwebsite> or call us on #905-111-2222 & +1-800-111-2222]]></message>
+    </product>
+</products>

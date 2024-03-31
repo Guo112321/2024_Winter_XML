@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XHTTP Example</title>
+</head>
+
+<body>
+  <h1>XHTTP Example</h1>
+  <pre id="data"></pre>
+  <script>
+    function displayData(xmlDoc) {
+      const el = document.querySelector('#data');
+      const name = xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+      el.innerHTML = name;
+    }
+    window.addEventListener('load', () => {
+      const xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "./customers.xml", false);
+      console.log('loading xml file');
+      xhttp.send();
+      console.log('loaded xml file');
+      const xmlDoc = xhttp.responseXML;
+      displayData(xmlDoc);
+    });
+  </script>
+</body>
+
+</html>

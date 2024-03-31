@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <title> ITC5202 - Week 10 </title>
+  <script>
+    function openJSON() {
+      const xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          const myObj = JSON.parse(this.responseText);
+          document.getElementById("demo").innerHTML = myObj.name;
+        }
+      }
+      xmlhttp.open("GET", "Activity2-json_data.json", true);
+      xmlhttp.send();
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Remember to use Live Preview -->
+  <p id="demo"></p>
+  <script>
+    addEventListener('load', () => {
+      openJSON();
+    });
+  </script>
+</body>
+
+</html>

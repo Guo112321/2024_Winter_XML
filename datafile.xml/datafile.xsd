@@ -1,0 +1,59 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://example.com/customers" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="customers">
+    <xs:annotation>
+      <xs:documentation> &lt;?xml-model href="./datafile.dtd" type="application/xml-dtd"?> </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="customer" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:string" name="title" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:string" name="address"/>
+              <xs:element type="xs:string" name="phone"/>
+              <xs:element type="xs:string" name="email" minOccurs="0"/>
+              <xs:element name="orders">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="order">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:date" name="orderDate"/>
+                          <xs:element name="items">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="item">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="itemPrice"/>
+                                      <xs:element type="xs:byte" name="itemQty"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="orderID" use="optional"/>
+                        <xs:attribute type="xs:string" name="orderBy" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="custID" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

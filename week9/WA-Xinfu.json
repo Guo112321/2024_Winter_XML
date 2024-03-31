@@ -1,0 +1,7 @@
+{"friends":[
+    {"Fname": "Alice", "Lname": "Smith", "tel": "123-456-7890", "email": "alice@example.com", "add": "123 Main St, City"},
+    {"Fname": "Bob", "Lname": "Johnson", "tel": "987-654-3210", "email": "bob@example.com", "add": "456 Elm St, Town"},
+    {"Fname": "Charlie", "Lname": "Brown", "tel": "555-555-5555", "email": "charlie@example.com", "add": "789 Oak St, Village"},
+    {"Fname": "David", "Lname": "Miller", "tel": "222-333-4444", "email": "david@example.com", "add": "321 Pine St, County"},
+    {"Fname": "Eva", "Lname": "Garcia", "tel": "777-888-9999", "email": "eva@example.com", "add": "654 Maple St, Suburb"}
+]}

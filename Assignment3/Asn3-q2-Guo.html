@@ -1,0 +1,89 @@
+<!-- 
+/*********************************************************************************
+* ITC5202 – Assignment 3
+* I declare that this assignment is my own work in accordance with Humber Academic Policy.
+* No part of this assignment has been copied manually or electronically from any other source
+* (including web sites) or distributed to other students.
+*
+* Name:         Xinfu Guo
+Student ID:     n01611988
+Date:           2024/3/23
+*
+********************************************************************************/ 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-r from-blue-200 to-indigo-200 text-lg">
+    <div class="container mx-auto p-6 m-4" id="container">
+        
+    </div>          
+
+    <script>
+        const KEY = "d6a7684d2115f8e511a746047c53476c";
+        const cnt = 10;
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/find?q=Cleveland&cnt=${cnt}&appid=${KEY}`;
+        /*
+        cnt is count.
+        In this Url, we can notice that there is just the name of Cleveland instead of latitude or longitude.
+        Because there are serval of place called Cleveland, we use cnt to get how many different place with same name.
+        In my code, there is a variable called cnt which I can set to manage how many different place I want.
+        */
+        const kelvin = 273.15;
+        addEventListener("load", (event) => {
+            loadWeather();
+        })
+
+
+        function loadWeather(){
+            const xhttp = new XMLHttpRequest();
+            xhttp.open('GET', weatherUrl, true);
+            document.getElementById('container').innerHTML = "loading...";
+            xhttp.onreadystatechange=handler;
+            xhttp.onerror=errorHandler;
+            xhttp.send();
+        }
+
+        function handler(){
+            if (this.readyState === 4) {
+                if (this.status) {
+                    const allData = JSON.parse(this.responseText);
+                    const currentDate = new Date();
+                    console.log(allData);
+
+                    let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">`;
+                    for (let i = 0; i < cnt; i++) {
+                        const data = allData.list[i];
+                        html +=  `<div class="bg-white rounded-lg overflow-hidden shadow-lg p-4 mb-4">
+                                        <div class="md:flex">
+                                            <div class="w-full p-4">
+                                                <h2 class="text-3xl font-bold text-gray-800 text-center mb-2">${data.name} ${data.sys.country}</h2>
+                                                <h3 class="text-2xl text-gray-600 text-center mb-4">${currentDate.getFullYear()}/${currentDate.getMonth()+1}/${currentDate.getDate()}</h3>
+                                            </div>
+                                        </div>
+                                        <div id="weather" class="p-6 border-t border-gray-200 text-base">`;
+                        html += `<h4 class="text-2xl font-semibold text-gray-800">${data.weather[0].main}</h4>`;
+                        html += `Description: ${data.weather[0].description}<br>`;
+                        html += `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].main}" class="w-40 h-40"/><br />`;
+                        html += `Temperature: ${(data.main.temp-kelvin).toFixed(2)}&#8451<br>`;
+                        html += `${(data.main.temp_min-kelvin).toFixed(2)}&#8451 ~ ${(data.main.temp_max-kelvin).toFixed(2)}&#8451<br>`;
+                        html += `Feel like: ${(data.main.feels_like-kelvin).toFixed(2)}&#8451<br>`;
+                        html += `Wind Speed: ${data.wind.speed}<br>`;
+                        html += `</div></div>`;
+                    }
+                    document.getElementById('container').innerHTML = html;
+                }
+            }
+        }
+
+        function errorHandler(){
+            document.getElementById("container").innerHTML = "There was an error!"
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get JSON</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <h1>Activity 2</h1>
+  <p id="status">Loading</p>
+  <button id="loadData">Load Data</button>
+  <script>
+    $(document).ready(() => {
+      $('#status').html('Ready');
+      $('#loadData').click((event) => {
+        console.log('Load Data button was clicked.  now use $.getJSON to load the file class.json');
+        // @see https://api.jquery.com/jQuery.getJSON/#jQuery-getJSON-url-data-success
+        $.getJSON('class.json', function(data) {
+          $('#status').html('loaded');
+          console.log(data);
+        });
+
+      });
+    });
+  </script>
+</body>
+
+</html>

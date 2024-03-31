@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product</title>
+</head>
+<body>
+    <div id="table"></div>
+
+
+    <script>
+        function loadInfo(xmlDoc){
+            const products = xmlDoc.getElementsByTagName("product");
+            let tableHtml = `<table border="1"><tr><th>Product Name</th><th>ASIN</th><th>Product URL</th><th>Brand Name</th><th>Image URL</th><th>MSRP</th><th>Sale Price</th><th>Discount</th><th>Product Description</th><th>Date Available</th><th>Number of Reviews</th><th>Seller Name</th></tr>`;
+            for (let i = 0; i < products.length; i++) {
+                const name = products[i].getElementsByTagName("product_name")[0].textContent;
+                const asin = products[i].getElementsByTagName("asin")[0].textContent;
+                const url = products[i].getElementsByTagName("product_url")[0].textContent;
+                const brand = products[i].getElementsByTagName("brand_name")[0].textContent;
+                const image = products[i].getElementsByTagName("image_url")[0].textContent;
+                const msrp = products[i].getElementsByTagName("msrp")[0].textContent;
+                const price = products[i].getElementsByTagName("sale_price")[0].textContent;
+                const discount = products[i].getElementsByTagName("discount")[0].textContent;
+                const description = products[i].getElementsByTagName("product_description")[0].textContent;
+                const date = products[i].getElementsByTagName("date_available")[0].textContent;
+                const number = products[i].getElementsByTagName("number_reviews")[0].textContent;
+                const sellername = products[i].getElementsByTagName("seller_name")[0].textContent;
+
+                tableHtml += `<tr>
+                            <td>${name}</td>
+                            <td>${asin}</td>
+                            <td><a href="${url}">${url}</a></td>
+                            <td>${brand}</td>
+                            <td><img src="${image}" alt="Product Image" height="100"/></td>
+                            <td>${msrp}</td>
+                            <td>${price}</td>
+                            <td>${discount}</td>
+                            <td>${description}</td>
+                            <td>${date}</td>
+                            <td>${number}</td>
+                            <td>${sellername}</td>
+                        </tr>`;
+            };
+            tableHtml += "</table>";
+            document.querySelector("#table").innerHTML = tableHtml;
+        }
+
+
+        window.addEventListener('load', () => {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "./products.xml", false);
+            xhttp.send();
+            const xmlDoc = xhttp.responseXML;
+            loadInfo(xmlDoc);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="suppliers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="supplier" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:short" name="supplierid"/>
+              <xs:element type="xs:string" name="distributionarea"/>
+              <xs:element name="product" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="product_name"/>
+                    <xs:element type="xs:string" name="asin"/>
+                    <xs:element type="xs:string" name="product_url"/>
+                    <xs:element type="xs:string" name="brand_name"/>
+                    <xs:element type="xs:string" name="image_url"/>
+                    <xs:element type="xs:string" name="msrp"/>
+                    <xs:element type="xs:string" name="sale_price"/>
+                    <xs:element type="xs:string" name="discount"/>
+                    <xs:element type="xs:string" name="product_description"/>
+                    <xs:element type="xs:string" name="date_available"/>
+                    <xs:element type="xs:byte" name="number_reviews"/>
+                    <xs:element type="xs:string" name="seller_name"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="instock" use="optional"/>
+                  <xs:attribute type="xs:string" name="productid" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

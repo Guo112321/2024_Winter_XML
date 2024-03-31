@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-4.9.0.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="row--25-75">
+        <div class="col">
+          <header>
+            <h1 id="title">Weather Report</h1>
+          </header>
+        </div>
+        <div class="col">
+          <div class="l-main">
+            <h2>Current weather</h2>
+            <div id="weatherCurrent" class="weatherReport">
+              Current weather data will go here
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const MY_NAME = "Xinfu Guo";
+        const API_KEY = "d6a7684d2115f8e511a746047c53476c";
+        const weatherUrl = ` https://api.openweathermap.org/data/2.5/weather?q=montreal&appid=${API_KEY}&units=metric`;
+
+        $(document).ready(() =>{
+            $.getJSON(weatherUrl, function(data){
+                console.log(data);
+                $('#weatherCurrent').html(`<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].main}"/><br />${data.weather[0].description}<br />`)
+            }).fail((error) => {
+                $('#weatgerCurrent').html('Error loading weather info');
+                console.error('Error loading weather info:', error);
+                });
+
+                });
+      </script>
+    
+    
+</body>
+</html>

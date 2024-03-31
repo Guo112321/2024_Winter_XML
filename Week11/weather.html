@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Report</title>
+  <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-4.9.0.min.css" />
+  <style>
+    .weatherReport {
+      background-color: #cccccc;
+    }
+  </style>
+</head>
+
+<body class="is-paper">
+  <div class="row--25-75">
+    <div class="col">
+      <header>
+        <h1 id="title">Weather Report</h1>
+      </header>
+    </div>
+    <div class="col">
+      <div class="l-main">
+        <h2>Current weather</h2>
+        <div id="weatherCurrent" class="weatherReport">
+          Current weather data will go here
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // TODO: update these
+    const MY_NAME = "Xinfu Guo";
+    const API_KEY = "d6a7684d2115f8e511a746047c53476c";
+
+    function loadCurrentWeather() {
+      // TODO: you can lookup lat & lon for a location at https://www.latlong.net/
+      // @see https://openweathermap.org/current for all details
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=43.653225&lon=-79.383186&appid=${API_KEY}`;
+      function handler() {
+        if (this.readyState === 4) {
+          if (this.status === 200) {
+            try {
+              const data = JSON.parse(this.responseText);
+              console.log('loaded and parsed weather data', data);
+              const weather = data.weather[0];
+              const main = data.main;
+              let html = '';
+              html += `<h3>${data.name}, ${data.sys.country}</h3>`;
+              html += `<img src="https://openweathermap.org/img/wn/${weather.icon}@2x.png" alt="${weather.main}"/><br />`;
+              html += `${weather.main}<br />`;
+              // TODO: add description here
+              html += `Temp: ${main.temp}&#8451<br />`;
+              html += `Feels like: ${main.feels_like}&#8451<br />`;
+              html += `Min Temp: ${main.temp_max}&#8451<br />`;
+              html += `Max Temp: ${main.temp_min}&#8451<br />`;
+              // TODO: add min and max temps here
+              document.querySelector("#weatherCurrent").innerHTML = html;
+            } catch (reason) {
+              document.querySelector("#weatherCurrent").innerHTML = `There was an error processing the weather data:${JSON.stringify(reason)}`;
+            }
+          } else {
+            document.querySelector("#weatherCurrent").innerHTML = `There was an error loading the weather data:  code:${this.status}, ${this.responseText}`;
+          }
+        }
+      }
+
+      function handleOnError(error) {
+        document.querySelector("#weatherCurrent").innerHTML = `There was an error loading the weather data:${JSON.stringify(error)}`;
+      }
+
+      // @see https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest_API/Using_XMLHttpRequest
+      const xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = handler;
+      xhttp.onerror = handleOnError;
+      xhttp.open("GET", weatherUrl, true);
+      document.querySelector("#weatherCurrent").innerHTML = 'Loading weather data';
+      xhttp.send();
+    }
+
+    addEventListener("load", (event) => {
+      try {
+        if (MY_NAME) {
+          document.querySelector("#title").innerHTML = `${MY_NAME}'s Weather Report`;
+        } else {
+          document.querySelector("#title").innerHTML = 'MY_NAME has not been set, yet';
+        }
+        if (API_KEY) {
+          loadCurrentWeather();
+        } else {
+          document.querySelector("#weatherCurrent").innerHTML = 'API_KEY has not been set';
+        }
+      } catch (reason) {
+        console.error('There was an error processing the page', reason);
+      };
+    });
+  </script>
+</body>
+
+</html>

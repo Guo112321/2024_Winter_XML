@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ITC5202 - Project 1 - Q7</title>
+</head>
+
+<body>
+  <h1>Product Report</h1>
+  <button onclick="clickButton()">Show all products</button>
+  <div id="table"></div>
+
+  <script>
+    function clickButton(){
+      const xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "./product-attribute-q09-q07.xml", false);
+      xhttp.send();
+      const xmlDoc = xhttp.responseXML;
+      showInfo(xmlDoc);
+    }
+
+    function showInfo(xmlDoc){
+      const suppliers = xmlDoc.getElementsByTagName("supplier");
+      let tableHtml = `<table border="1"><tr><th>Supplier ID</th><th>Distribution Area</th><th>Product Name</th><th>ASIN</th><th>Product URL</th><th>Brand Name</th><th>Image URL</th><th>MSRP</th><th>Sale Price</th><th>Discount</th><th>Product Description</th><th>Date Available</th><th>Number of Reviews</th><th>Seller Name</th></tr>`;
+      for (let i = 0; i < suppliers.length; i++) {
+          const products = suppliers[i].getElementsByTagName("product");
+          const supplierId = suppliers[i].getAttribute("supplierid"); 
+          const distributionArea = suppliers[i].getElementsByTagName("distributionarea")[0].textContent;
+          for (let j = 0; j < products.length; j++) {
+              const instock = products[j].getAttribute("instock");
+              const name = products[j].getElementsByTagName("product_name")[0].textContent;
+              const asin = products[j].getElementsByTagName("asin")[0].textContent;
+              const url = products[j].getElementsByTagName("product_url")[0].textContent;
+              const brand = products[j].getElementsByTagName("brand_name")[0].textContent;
+              const image = products[j].getElementsByTagName("image_url")[0].textContent;
+              const msrp = products[j].getElementsByTagName("msrp")[0].textContent;
+              const price = products[j].getElementsByTagName("sale_price")[0].textContent;
+              const discount = products[j].getElementsByTagName("discount")[0].textContent;
+              const description = products[j].getElementsByTagName("product_description")[0].textContent;
+              const date = products[j].getElementsByTagName("date_available")[0].textContent;
+              const number = products[j].getElementsByTagName("number_reviews")[0].textContent;
+              const sellername = products[j].getElementsByTagName("seller_name")[0].textContent;
+
+              let rowHtml = `<tr>`;
+              if (instock === "N") {
+                  rowHtml = `<tr style="background-color: blue;">`;
+              }
+
+              if (j === 0) {
+                  rowHtml += `<td rowspan="${products.length}">${supplierId}</td>
+                              <td rowspan="${products.length}">${distributionArea}</td>`;
+              }
+
+              rowHtml += `<td>${name}</td>
+                          <td>${asin}</td>
+                          <td><a href="${url}">${url}</a></td>
+                          <td>${brand}</td>
+                          <td><img src="${image}" alt="Product Image" height="100"/></td>
+                          <td>${msrp}</td>
+                          <td>${price}</td>
+                          <td>${discount}</td>
+                          <td>${description}</td>
+                          <td>${date}</td>
+                          <td>${number}</td>
+                          <td>${sellername}</td>
+                      </tr>`;
+
+              tableHtml += rowHtml;
+          }
+      }
+      tableHtml += "</table>";
+
+      document.getElementById("table").innerHTML = tableHtml;
+    }
+  </script>
+</body>
+
+</html>

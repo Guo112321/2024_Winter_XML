@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 3 - Products</title>
+<!--
+Replace {YOUR NAME HERE} with your name 
+Make an Asynchronous Ajax request using XMLHttpRequest to extract the JSON data from this api:
+https://dummyjson.com/products?limit=10
+Display the following fields for every record in an HTML table:
+id, title, description, rating, category, brand
+Submission: Source code (zip) + screenshot (output + your sourcecode in vscode)
+-->
+</head>
+<body>
+  <h1>Guo Xinfu</h1>
+  <div id="table"></div>
+  <script>
+    //TODO: add your solution here
+    addEventListener("load", (event) => {
+      url = "https://dummyjson.com/products?limit=10";
+
+      const xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = handler;
+      xhttp.onerror = handleOnError;
+      xhttp.open("GET", url, true);
+      document.querySelector("#table").innerHTML = 'Loading data';
+      xhttp.send();
+    });
+
+    function handler() {
+        if (this.readyState === 4) {
+          if (this.status === 200) {
+            const data = JSON.parse(this.responseText);
+            console.log(data);
+            
+            //id, title, description, rating, category, brand
+            let html = '<table border = 1>';
+            html += '<tr><th>ID</th><th>Title</th><th>Description</th><th>Rating</th><th>Category</th><th>Brand</th></tr>';
+            for (let i = 0; i < data.products.length; i++) {
+              const product = data.products[i];
+              html += `<tr>
+                          <td>${product.id}</td>
+                          <td>${product.title}</td>
+                          <td>${product.description}</td>
+                          <td>${product.rating}</td>
+                          <td>${product.category}</td>
+                          <td>${product.brand}</td>
+                      </tr>`;
+            }
+            html += '</table>';
+            document.getElementById("table").innerHTML = html;
+
+          }
+          else{
+            document.getElementById("table").innerHTML = `Error`;
+          }
+        }
+    }
+
+    function handleOnError(error) {
+        document.querySelector("#table").innerHTML = `error`;
+      }
+  </script>
+</body>
+</html>

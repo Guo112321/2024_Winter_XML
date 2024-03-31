@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="student.xsl"?>
+<student rollno="393">
+  <firstname>Dinkar</firstname>
+  <lastname>Kad</lastname>
+  <nickname>Dinkar</nickname>
+  <marks>85</marks>
+</student>

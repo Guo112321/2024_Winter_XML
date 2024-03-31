@@ -1,0 +1,25 @@
+/* Set the font-size of ‘title’ to 3em */
+title{
+    font-size: 3em;
+}
+
+/* Set the font-size of ‘originalName’ and ‘category’ to 2em */
+originalName, category{
+    font-size: 2em;
+}
+
+/* display each ‘category’ and ‘originalName’ on a new line */
+originalName, category{
+    display: block;
+}
+
+/* Apply white-space: pre-line to `summary` and `description` elements */
+summary, description{
+    white-space: pre-line;
+}
+
+/* Use your creativity to add at least one other style */
+/* I change the background color */
+*{
+    background-color: antiquewhite;
+}

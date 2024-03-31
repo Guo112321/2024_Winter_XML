@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity3</title>
+</head>
+<body>
+    <form action="">
+        <label>Price</label>
+        <br>
+        <input type="number" id="price">
+        <br>
+        <label>Tax</label>
+        <br>
+        <input type="number" id="tax">
+        <br>
+        <button type="button" id="calculate">Calculate</button>
+        <br>
+        <p id="totalprice">Total is:</p>
+    </form>
+
+    <script>
+        document.getElementById("calculate").addEventListener("click", function(){
+            const price = parseFloat(document.getElementById("price").value)
+            const tax = parseFloat(document.getElementById("tax").value)
+
+            const total = price + tax
+            console.log(total)
+
+            document.getElementById("totalprice").innerText = "Total is: " + total
+        })
+    </script>
+</body>
+</html>

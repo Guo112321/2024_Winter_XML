@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><!-- prolog-->
+<?xml-stylesheet href="./Guo_style.css" type="text/css"?>
+<!DOCTYPE menuInfo [
+  <!ELEMENT menuInfo (title, summary, effectiveDate, menu+)>
+  <!ELEMENT title (#PCDATA)>
+  <!ELEMENT summary (#PCDATA)>
+  <!ELEMENT effectiveDate (#PCDATA)>
+
+  <!ELEMENT menu (category, menuItem+)>
+  <!ELEMENT category (#PCDATA)>
+
+  <!ELEMENT menuItem (itemName, description, price, indicator*)>
+  <!ELEMENT itemName (originalName, oldName*)>
+  <!ELEMENT originalName (#PCDATA)>
+  <!ELEMENT oldName (#PCDATA)>
+  <!ELEMENT description (#PCDATA)>
+  <!ELEMENT price (#PCDATA)>
+  <!ELEMENT indicator (#PCDATA)>
+]>
+<!-- document body-->
+<menuInfo>
+  <title>Chester's Breakfast Menu</title>
+  <summary>
+   <![CDATA[If you've been craving an authentic homestyle country breakfast,
+   look no further than Chester's!  We've got your breakfast favorites served
+   up just the way you like them!!
+   ]]>
+   </summary>
+  <effectiveDate>03/12/2016</effectiveDate>
+  <menu>
+    <category>Traditional Favorites</category>
+    <menuItem>
+      <itemName>
+        <originalName> Rise n' Shine </originalName>
+        <oldName> Shine </oldName>
+      </itemName>
+      <description>
+         <![CDATA[
+         Two Eggs* cooked to order with Grits, Gravy and Homemade Buttermilk
+         Biscuits along with real Butter and the best fresh jam
+         available. Served with your choice of Fresh Fruit or Hashbrown Casserole
+         and Smoked Sausage Patties, Turkey Sausage Patties or Thick-Sliced Bacon.
+         ]]>
+         </description>
+      <price>7.95</price>
+    </menuItem>
+    <menuItem>
+      <itemName>
+        <originalName> Fresh Mornin' Sampler </originalName>
+        <oldName> Mornin' Sampler </oldName>
+      </itemName>
+      <description>
+         <![CDATA[
+         Low-Fat Vanilla Yogurt and Seasonal Fruit topped with our Honey Granola
+         mix of Almonds and Dried Fruit. Served with a Wild Maine Blueberry Muffin
+         or an Apple Bran Muffin.
+         ]]>
+         </description>
+      <price>6.95</price>
+      <indicator>&#9829;</indicator>  <!-- heart healthy -->
+      <indicator>&#9830;</indicator>  <!-- low-sodium -->
+      <indicator>&#9824;</indicator>  <!-- vegan -->
+    </menuItem>
+  </menu>
+  <menu>
+    <category>Lite and Quick</category>
+    <menuItem>
+      <itemName>
+        <originalName> Oatmeal Breakfast </originalName>
+      </itemName>
+      <description>
+         <![CDATA[
+            Our Oatmeal is served warm with your choice of Fried Apples, Pecans, Raisins,
+            Fresh Sliced Bananas or 100% Pure Natural Syrup. Also, served with your
+            choice of Apple Bran Muffin or Wild Maine Blueberry Muffin. Available
+            all day.
+         ]]>
+         </description>
+      <price>6.95</price>
+      <indicator>&#9829;</indicator>  <!-- heart healthy -->
+      <indicator>&#9830;</indicator>  <!-- low-sodium -->
+      <indicator>&#9824;</indicator>  <!-- vegan -->
+    </menuItem>
+    <menuItem>
+      <itemName>
+        <originalName> Chester's Meat Platter </originalName>
+        <oldName> Chester Platter </oldName>
+      </itemName>
+      <description>
+         <![CDATA[
+         Country Ham, Pork Chops or Steak* grilled to order, Three Eggs* cooked
+         to order served with Cottage Cheese, Smoked Sausage Patties, Turkey
+         Sausage Patties or Thick-Sliced Bacon.
+         ]]>
+         </description>
+      <price>12.95</price>
+      <indicator>&#9832;</indicator>  <!-- Low-carb -->
+    </menuItem>
+  </menu>
+</menuInfo>
+<!-- epilog-->
+<!-- Name: Guo Xinfu ID:n01611988-->
