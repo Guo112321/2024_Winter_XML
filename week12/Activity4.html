@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="weather"></div>
+
+
+    <script>
+        const KEY = "d6a7684d2115f8e511a746047c53476c";
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=37.870590&lon=112.548882&appid=${KEY}`;
+
+        addEventListener('load', () => {
+            fetch(weatherUrl)
+            .then((res) => {
+                if(!res.ok){throw(res.statusText)}
+                return(res.json())
+            })
+            .then((data) => {
+                let html = "";
+                html += `<h4>${data.weather[0].main}</h4>`;
+                html += `Temperature: ${data.main.temp_min}&#8451 ~ ${data.main.temp_max}&#8451<br>`;
+                document.getElementById("weather").innerHTML = html;
+            })
+            .catch((reason) => {
+                document.getElementById("weather").innerHTML = "404";
+                console.error('error', reason);
+            });
+        });
+    </script>
+</body>
+</html>

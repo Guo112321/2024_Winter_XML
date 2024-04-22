@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="firstRecord"></div>
+
+    <script>
+         const dataUrl = 'MOCK_DATA.json';
+
+        $(document).ready(() => {
+            $.getJSON(dataUrl, function(data) {
+                console.log(data);
+
+                $('#firstRecord').html(`<p>First Name: ${data[0].f_name}, Email: ${data[0].job_title}</p>`);
+                
+            }).fail((error) => {
+                console.error('Error fetching data with getJSON:', error);
+            });
+        });
+    </script>
+</body>
+</html>

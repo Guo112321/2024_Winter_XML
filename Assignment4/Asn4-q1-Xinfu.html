@@ -1,0 +1,80 @@
+<!-- /*********************************************************************************
+ITC5202 – Assignment 4
+I declare that this assignment is my own work in accordance with Humber Academic Policy.
+No part of this assignment has been copied manually or electronically from any other source
+(including web sites) or distributed to other students.
+
+Name: Xinfu Guo
+Student ID: n01611988
+Date: 2024/4/5
+
+********************************************************************************/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-r from-blue-200 to-indigo-200 text-lg">
+    <div class="container mx-auto p-6 m-4">
+        <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg shadow-lg">
+            <div class="md:flex">
+                <div class="w-full p-4">
+                    <h2 id="title" class="text-3xl font-bold text-gray-800 text-center mb-2"></h2>
+                    <h3 id="date" class="text-2xl text-gray-600 text-center mb-4"></h3>
+                </div>
+            </div>
+            <div id="weather" class="p-6 border-t border-gray-200 text-base"></div>
+        </div>
+    </div>
+
+    <script>
+        const KEY = "d6a7684d2115f8e511a746047c53476c";
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/find?q=Cleveland&cnt=20&appid=${KEY}&lang=fr&units=metric`;
+    
+        window.addEventListener("load", () => {
+            loadWeather();
+        });
+    
+        function loadWeather() {
+            fetch(weatherUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    updateWeather(data);
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    document.getElementById("weather").innerHTML = "There was an error loading the weather data!";
+                });
+        }
+    
+        function updateWeather(data) {
+            const weatherData = data.list[0];
+            const currentDate = new Date();
+            
+            const feelsLikeFahrenheit = (weatherData.main.feels_like * 9/5) + 32;
+    
+            let html = "";
+            html += `<h4 class="text-2xl font-semibold text-gray-800">${weatherData.weather[0].main}</h4>`;
+            html += `Description: ${weatherData.weather[0].description}<br>`;
+            html += `<img src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png" alt="${weatherData.weather[0].main}" class="w-40 h-40"/><br />`;
+            html += `Temperature: ${weatherData.main.temp}&#8451<br>`;
+            html += `Feel like: ${feelsLikeFahrenheit.toFixed(2)}&#8457<br>`;
+            html += `Wind Speed: ${weatherData.wind.speed} m/s<br>`;
+    
+            document.getElementById('weather').innerHTML = html;
+            document.getElementById("title").innerHTML = `${weatherData.name}, ${weatherData.sys.country}`;
+            document.getElementById("date").innerHTML = `${currentDate.getFullYear()}/${currentDate.getMonth()+1}/${currentDate.getDate()}`;
+        }
+    </script>
+    
+</body>
+</html>

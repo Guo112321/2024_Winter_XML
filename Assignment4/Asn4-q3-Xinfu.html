@@ -1,0 +1,95 @@
+
+<!-- /*********************************************************************************
+ITC5202 – Assignment 4
+I declare that this assignment is my own work in accordance with Humber Academic Policy.
+No part of this assignment has been copied manually or electronically from any other source
+(including web sites) or distributed to other students.
+
+Name: Xinfu Guo
+Student ID: n01611988
+Date: 2024/4/5
+
+********************************************************************************/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Data Display</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h2>XML Data Table</h2>
+    <table id="dataTable">
+        <thead>
+            <tr>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div id="error-message" style="color: red; display: none;"></div>
+
+
+    <script>
+        async function loadXMLData() {
+            try {
+                const response = await fetch('products.xml');
+                const data = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, "application/xml");
+
+                displayData(xmlDoc);
+            } catch (error) {
+                console.error('Error fetching or parsing XML:', error);
+                displayError('Failing load data');
+            }
+        }
+
+        function displayData(xml) {
+            const table = document.getElementById('dataTable');
+            const tbody = table.querySelector('tbody');
+            const thead = table.querySelector('thead tr');
+
+            const records = xml.getElementsByTagName('product'); 
+            if (records.length > 0) {
+                const attributes = records[0].attributes;
+                for (let attr of attributes) {
+                    let th = document.createElement('th');
+                    th.textContent = attr.name;
+                    thead.appendChild(th);
+                }
+
+                for (let record of records) {
+                    let row = tbody.insertRow();
+                    for (let attr of attributes) {
+                        let cell = row.insertCell();
+                        cell.textContent = record.getAttribute(attr.name);
+                    }
+                }
+            } else {
+                displayError("No records found in the XML")
+            }
+        }
+
+        function displayError(message) {
+            const errorElement = document.getElementById('error-message');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+}
+
+        window.addEventListener('load', loadXMLData);
+    </script>
+</body>
+</html>

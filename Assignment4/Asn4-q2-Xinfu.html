@@ -1,0 +1,64 @@
+
+<!-- /*********************************************************************************
+ITC5202 – Assignment 4
+I declare that this assignment is my own work in accordance with Humber Academic Policy.
+No part of this assignment has been copied manually or electronically from any other source
+(including web sites) or distributed to other students.
+
+Name: Xinfu Guo
+Student ID: n01611988
+Date: 2024/4/5
+
+********************************************************************************/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-200 to-indigo-200 text-lg">
+    <div class="container mx-auto p-6 m-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="container"></div>
+    </div> 
+    
+    <script>
+        $(document).ready(function() {
+            const KEY = "d6a7684d2115f8e511a746047c53476c";  
+            const weatherUrl = `https://api.openweathermap.org/data/2.5/find?q=Cleveland&cnt=20&appid=${KEY}`;
+
+            $.ajax({
+                url: weatherUrl,
+                dataType: 'json',
+                success: function(data) {
+                    $('#container').empty();
+                    $.each(data.list, function(index, weatherItem) {
+                        const tempCelsius = (weatherItem.main.temp - 273.15).toFixed(2); 
+                        const feelsLikeCelsius = (weatherItem.main.feels_like - 273.15).toFixed(2); 
+                        const iconUrl = `https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png`;
+                        $('#container').append(
+                            `<div class="weather-card p-4 shadow-lg mb-4 rounded-lg bg-white">
+                            <h2 class="text-2xl font-bold">${weatherItem.name}, ${weatherItem.sys.country}</h2>
+                            <img src="${iconUrl}" alt="Weather Icon" class="my-2">
+                            <p>Temperature: ${tempCelsius}°C</p>
+                            <p>Feels Like: ${feelsLikeCelsius}°C</p>
+                            <p>Description: ${weatherItem.weather[0].description}</p>
+                        </div>`
+                        );
+                    });
+                },
+                error: function() {
+                    console.log("Error");
+                    $('#container').html('<p>Error loading weather data.</p>');
+                }
+            });
+        });
+    </script>
+
+    
+    
+</body>
+</html>

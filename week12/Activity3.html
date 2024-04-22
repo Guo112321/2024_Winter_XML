@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="randomperson"></div>
+
+    <script>
+        addEventListener('load', () => {
+            fetch('https://reqres.in/api/users') //this is a syntax which is using Fetch API to requist data from specific websit. And in this web, there are some data about person which include: id, email, first name, last name, avatar.
+            .then((res) => { // this is promise, which is to deal with requistion. 'res' is the object of this requist. In brief, it's the name of data which is provided by websit.
+                console.log(res);
+                return (res.json()); // this is asynchronou. it will return a promise which will be operated in next step, and the format of data is JSON.
+            })
+            .then((data) => { // it's the other part of Promise, which is to deal with the data from previous step (data in return)
+                console.log('loaded data')
+                console.log(data);
+                var person = data.data[4];
+                document.getElementById("randomperson").innerHTML = `<img src="${person.avatar}"><br> id: ${person.id}<br> email: ${person.email}<br> first name: ${person.first_name}<br> last name: ${person.last_name}`;
+            }
+            );
+        }); 
+    </script>
+</body>
+</html>
